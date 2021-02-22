@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "abridge",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "client": "yarn workspace @abridge/client dev",
+    "server": "yarn workspace @abridge/server dev",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}
