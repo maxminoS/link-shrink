@@ -1,10 +1,31 @@
 import express from "express";
+import mongoose from "mongoose";
+
+import { Abridge } from "./models/abridge.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get("/", (_, res) => {
-  res.send("test");
+mongoose.connect("mongodb://localhost:27017/abridge", { useNewUrlParser: true, useUnifiedTopology: true });
+
+app.use(express.urlencoded({ extended: false }));
+
+app.get("/", async (_, res) => {
+  const abridged = await Abridge.find();
+  res.json(abridged);
 });
 
-app.listen(port);
+app.post("/api/abridge", async (req, res) => {
+  await Abridge.create({ url: req.body.url });
+  res.redirect("/");
+});
+
+app.get("/:abridged", async (req, res) => {
+  const abridged = await Abridge.findOne({ abridged: req.params.abridged });
+  if (abridged == null) return res.sendStatus(404);
+  res.redirect(abridged.url);
+});
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
