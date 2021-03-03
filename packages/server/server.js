@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import { Abridge } from "./models/abridge.js";
 
@@ -8,16 +9,18 @@ const port = process.env.PORT || 5000;
 
 mongoose.connect("mongodb://localhost:27017/abridge", { useNewUrlParser: true, useUnifiedTopology: true });
 
+app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", async (_, res) => {
+app.get("/api/links", async (_, res) => {
   const abridged = await Abridge.find();
   res.json(abridged);
 });
 
 app.post("/api/abridge", async (req, res) => {
   await Abridge.create({ url: req.body.url });
-  res.redirect("/");
+  res.redirect(307, "http://localhost:3000");
 });
 
 app.get("/:abridged", async (req, res) => {
