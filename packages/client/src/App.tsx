@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+import { truncateLink } from "./utils/truncateLink";
 import { LinkAPI } from "./api/LinkAPI";
 
 type Links =  {
@@ -55,8 +56,8 @@ export const App = () => {
         { links ?
           links.map(link => (
             <tr key={link._id} >
-              <td><a href={link.url}>{link.url}</a></td>
               <td><a href={import.meta.env.VITE_BACKEND_SERVER + link.abridged} target="_blank">{link.abridged}</a></td>
+              <td><a href={link.url}>{ truncateLink(link.url) }</a></td>
             </tr>
           ))
           : null }
