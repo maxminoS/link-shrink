@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import { Abridge } from "./models/abridge.js";
+import { shrinkLink } from "./utils/shrinkLink.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -19,7 +20,7 @@ app.get("/api/links", async (_, res) => {
 });
 
 app.post("/api/abridge", async (req, res) => {
-  await Abridge.create({ url: req.body.url });
+  await Abridge.create({ url: req.body.url, abridged: shrinkLink() });
   res.redirect(307, "http://localhost:3000");
 });
 

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { shrinkLink } from "../utils/shrinkLink.js";
 
 const abridgeSchema = new mongoose.Schema({
   url: {
@@ -8,8 +7,7 @@ const abridgeSchema = new mongoose.Schema({
   },
   abridged: {
     type: String,
-    required: true,
-    default: shrinkLink()
+    required: true
   }
 });
 
