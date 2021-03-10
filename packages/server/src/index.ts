@@ -5,10 +5,12 @@ import cors from "cors";
 import { Abridge } from "./models/abridge.model";
 import { shrinkLink } from "./utils/shrinkLink";
 
+const DB_ROW_LIMIT = 25;
+
 const app = express();
 const port = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost:27017/abridge", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/abridge", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 app.use(cors());
 app.use(express.json());
@@ -21,6 +23,9 @@ app.get("/api/links", async (_, res: Response) => {
 
 app.post("/api/abridge", async (req: Request, res: Response) => {
   await Abridge.create({ url: req.body.url, abridged: shrinkLink() });
+  while (await Abridge.countDocuments() > DB_ROW_LIMIT) {
+    await Abridge.findOneAndRemove();
+  }
   res.redirect(307, "http://localhost:3000");
 });
 
