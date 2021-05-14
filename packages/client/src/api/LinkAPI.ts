@@ -1,7 +1,7 @@
 export const LinkAPI = {
   getLink: async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/links");
+      const response = await fetch("/api/links");
       return await response.json();
     } catch (error) {
       throw error;
