@@ -2,18 +2,18 @@ import mongoose, { Document, Schema } from "mongoose";
 
 export interface ILink extends Document {
   url: string;
-  abridged: string;
+  shrink: string;
 }
 
-const AbridgeSchema: Schema = new Schema({
+const LinkSchema: Schema = new Schema({
   url: {
     type: String,
     required: true
   },
-  abridged: {
+  shrink: {
     type: String,
     required: true
   }
 });
 
-export const Abridge = mongoose.model<ILink>("Abridge", AbridgeSchema);
+export const Link = mongoose.model<ILink>("Link", LinkSchema);

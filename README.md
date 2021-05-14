@@ -1,4 +1,4 @@
-# Abridge
+# Link Shrink
 
 Simple URL shortener.
 

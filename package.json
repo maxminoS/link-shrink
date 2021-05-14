@@ -1,12 +1,12 @@
 {
   "private": true,
-  "name": "abridge",
+  "name": "link-shrink",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "client": "yarn workspace @abridge/client dev",
-    "server": "yarn workspace @abridge/server dev",
+    "client": "yarn workspace @link-shrink/client dev",
+    "server": "yarn workspace @link-shrink/server dev",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
