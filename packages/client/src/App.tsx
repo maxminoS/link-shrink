@@ -5,7 +5,7 @@ import { LinkList } from "./components/LinkList";
 
 export const App = () => {
   return (
-    <div className="h-full py-4 bg-gray-200">
+    <div className="h-screen py-4 bg-gray-200">
       <LinkForm />
       <LinkList />
     </div>
