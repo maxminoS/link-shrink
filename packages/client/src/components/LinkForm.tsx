@@ -7,7 +7,7 @@ export const LinkForm = () => {
     <Formik initialValues={{ url: "" }}
             validationSchema={Yup.object({ url: Yup.string().url("URL must be valid").required("") })}
             onSubmit={async (values) => {
-              await fetch("api/shrink", {
+              await fetch(import.meta.env.VITE_BACKEND_SERVER + "/api/shrink", {
                 "method": "POST",
                 "body": JSON.stringify(values),
                 "headers": { "Content-Type": "application/json" }
