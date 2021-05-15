@@ -1,0 +1,27 @@
+version: "3"
+services:
+  app:
+    container_name: link-shrink
+    restart: always
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - linkshrink
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - linkshrink
+    volumes:
+      - mongo-data:/data/db
+networks:
+  linkshrink:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local

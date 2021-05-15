@@ -10,8 +10,6 @@ const DB_ROW_LIMIT = 25;
 const app = express();
 const port = process.env.PORT || 5000;
 
-mongoose.connect("mongodb://localhost:27017/link", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,6 +33,6 @@ app.get("/:shrink", async (req: Request, res: Response) => {
   res.redirect(shrink.url);
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+mongoose.connect("mongodb://mongo:27017/link", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
+  app.listen(port, () => console.log(`Server listening on port ${port}`));
+}).catch(e => console.log(e));
