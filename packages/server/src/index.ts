@@ -9,6 +9,7 @@ const DB_ROW_LIMIT = 25;
 
 const app = express();
 const port = process.env.PORT || 6000;
+const url = process.env.URL || "http://localhost:3000";
 
 app.use(cors());
 app.use(express.json());
@@ -24,7 +25,7 @@ app.post("/api/shrink", async (req: Request, res: Response) => {
   while (await Link.countDocuments() > DB_ROW_LIMIT) {
     await Link.findOneAndRemove();
   }
-  res.redirect(307, "http://localhost:3000");
+  res.redirect(307, url);
 });
 
 app.get("/:shrink", async (req: Request, res: Response) => {
