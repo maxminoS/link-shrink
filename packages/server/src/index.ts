@@ -9,7 +9,6 @@ const DB_ROW_LIMIT = 25;
 
 const app = express();
 const port = process.env.PORT || 6000;
-const url = process.env.URL || "http://localhost:3000";
 
 app.use(cors());
 app.use(express.json());
