@@ -34,7 +34,7 @@ export const LinkForm = ({ setReload }: Props) => {
                 }, 500);
               }}>Submit</button>
             }
-            <ErrorMessage className="text-red-500 text-sm italic" name="url" component="div" />
+          {(formik.values.url != initialUrlValue) && <ErrorMessage className="text-red-500 text-sm italic" name="url" component="div" />}
           </Form>
         );
     }}
