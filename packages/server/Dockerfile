@@ -5,5 +5,6 @@ ENV PORT=6000
 ENV URL="http://localhost:3000"
 RUN yarn
 COPY . .
+RUN yarn build
 EXPOSE 6000
-CMD ["yarn", "dev"]
+CMD ["yarn", "serve"]
