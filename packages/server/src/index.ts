@@ -25,7 +25,6 @@ app.post("/api/shrink", async (req: Request, res: Response) => {
   while (await Link.countDocuments() > DB_ROW_LIMIT) {
     await Link.findOneAndRemove();
   }
-  res.redirect(307, url);
 });
 
 app.get("/:shrink", async (req: Request, res: Response) => {

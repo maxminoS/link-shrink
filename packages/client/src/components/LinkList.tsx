@@ -1,25 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Links } from "../App";
 
-import { LinkAPI } from "../api/LinkAPI";
-
-type Links =  {
-  _id: string,
-  shrink: string,
-  url: string,
+type Props = {
+  links: Links[]
 }
 
-export const LinkList = () => {
-  const [links, setLinks] = useState<Links[]>([]);
-
-  useEffect(() => {
-    (async () => {
-      LinkAPI.getLink()
-             .then(fetchedLinks => {
-               setLinks(fetchedLinks.reverse());
-             });
-    })();
-  }, []);
-
+export const LinkList = ({ links }: Props) => {
   return (
     <>
     { (links.length != 0) &&
