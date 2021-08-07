@@ -9,7 +9,7 @@ export const LinkList = ({ links }: Props) => {
   return (
     <>
     { (links.length != 0) &&
-    <table className="ml-auto mr-auto mt-8 shadow-lg table-fixed w-screen md:w-2/3">
+    <table className="ml-auto mr-auto mt-8 shadow-lg table-fixed w-screen sm:w-3/4 lg:w-1/2">
       <thead className="bg-indigo-600 tracking-wider text-white"><tr>
         <th className="w-2/3 md:w-5/6 px-2 py-2">URL</th>
         <th className="w-1/3 md:w-1/6 px-2 py-2">Shrink</th>

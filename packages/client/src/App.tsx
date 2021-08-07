@@ -37,7 +37,7 @@ export const App = () => {
   }
 
   return (
-    <div className="h-screen py-4 bg-gray-200">
+    <div className="h-full py-4 bg-gray-200">
       <LinkForm setReload={setReload} />
       <LinkList links={links} />
     </div>
